@@ -141,7 +141,7 @@ All options except `cookies` are optional. They will fall back to the defaults, 
 Will create a new instance.
 
 ```js
-const cookieConsent = CookieConsent({
+const cookieConsent = Index({
     cookies: [
         // ...
     ]
@@ -153,7 +153,7 @@ To make the instance globally available (for instance to add event listeners els
 ```js
 const cookieConsent = CookieConsent();
 
-window.CookieConsent = cookieConsent;
+window.Index = cookieConsent;
 ```
 
 ### getDialog()

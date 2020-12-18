@@ -1,13 +1,13 @@
-import { htmlToElement, preventingDefault } from '@grrr/utils';
+import { htmlToElement } from './utils';
 import EventDispatcher from './event-dispatcher';
-import DialogTabList from './dialog-tablist';
+import DialogTablist from './dialog-tablist';
 
 /**
  * Dialog which is shown to update cookie preferences.
  */
 const Dialog = ({ config, preferences }) => {
 
-  const tabList = DialogTabList({ config, preferences });
+  const tabList = DialogTablist({ config, preferences });
   const events = EventDispatcher();
 
   const TYPE = config.get('type');
@@ -129,7 +129,7 @@ const Dialog = ({ config, preferences }) => {
       form.insertBefore(tabList.element, form.firstElementChild);
 
       // Attach submit listener to the form.
-      form.addEventListener('submit', preventingDefault(submitHandler));
+      form.addEventListener('submit', submitHandler);
 
       // Update initial button label if `acceptAllButton` is set to true,
       // and no cookie preferences have been stored. Also listen for changes

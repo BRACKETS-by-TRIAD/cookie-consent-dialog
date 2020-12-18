@@ -1,50 +1,21 @@
 {
-  "name": "@grrr/cookie-consent",
-  "version": "1.0.2",
-  "description": "Cookie consent with accessible dialog, agnostic tag triggers and conditional content, script and embed hooks.",
+  "name": "cookie-consent",
+  "version": "1.0.0",
+  "description": "Cookie consent banner",
+  "scripts": {
+    "styles": "sass src/scss/styles.scss dist/styles.css",
+    "build": "webpack && npm run styles"
+  },
   "keywords": [
     "cookie consent",
-    "cookie dialog",
-    "gdpr",
-    "google tag manager",
-    "gtm"
+    "cookie dialog"
   ],
-  "main": "index.mjs",
-  "author": "GRRR <npm@grrr.nl>",
-  "homepage": "https://github.com/grrr-amsterdam/cookie-consent",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/grrr-amsterdam/cookie-consent.git"
-  },
-  "dependencies": {
-    "@grrr/utils": "^2.3.0"
-  },
+  "author": "",
+  "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.6.4",
-    "@babel/plugin-transform-modules-commonjs": "^7.6.0",
-    "babel-jest": "^26.0.1",
-    "eslint": "^7.1.0",
-    "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jest": "^23.0.2",
-    "jest": "^26.0.1",
-    "node-sass": "^5.0.0"
-  },
-  "scripts": {
-    "test": "jest",
-    "lint": "eslint . --ext=.js,.mjs"
-  },
-  "jest": {
-    "transformIgnorePatterns": [
-      "//node_modules/(?!.*.*/.*.mjs)/"
-    ],
-    "transform": {
-      "^.+\\.m?js$": "babel-jest"
-    },
-    "moduleFileExtensions": [
-      "js",
-      "mjs"
-    ]
+    "sass": "^1.30.0",
+    "sass-loader": "^10.1.0",
+    "webpack": "^5.10.0",
+    "webpack-cli": "^4.2.0"
   }
 }

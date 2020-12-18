@@ -58,4 +58,6 @@ const CookieConsent = settings => {
 
 };
 
+window.CookieConsent = CookieConsent;
+
 export default CookieConsent;

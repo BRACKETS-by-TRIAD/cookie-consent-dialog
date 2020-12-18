@@ -1,0 +1,187 @@
+html, body {
+    min-height: 100%;
+}
+
+$cookie-consent-breakpoint: 40em;
+$cookie-consent-dark: #000000;
+$cookie-consent-light: #FFFFFF;
+$cookie-consent-horizontal-padding: 24px;
+
+.cookie-consent {
+    z-index: 1000;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    max-height: 100%;
+    overflow: hidden;
+    background: $cookie-consent-light;
+    color: $cookie-consent-dark;
+    transform: translate3d(0, 0, 0);
+    transition: transform 0.5s, opacity 0.5s, visibility 0.5s;
+    box-shadow: 0 15px 50px -12px rgba(0, 0, 0, 0.25);
+
+    @media (min-width: $cookie-consent-breakpoint) {
+        right: 25px;
+        bottom: 25px;
+        left: auto;
+        max-width: 400px;
+        max-height: calc(100% - 50px);
+    }
+
+    &[aria-hidden="true"] {
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
+        transform: translate(0, 100px);
+
+        @media (min-width: $cookie-consent-breakpoint) {
+            transform: translate(100px, 0);
+        }
+    }
+
+    &__header {
+        padding: 20px $cookie-consent-horizontal-padding;
+
+        h1 {
+            font-size: 20px;
+            margin: 0 auto 0.5em;
+
+            @screen md {
+                font-size: 26px;
+            }
+        }
+
+        p {
+            font-size: 18px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    &__tab-list {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+
+        //margin-bottom: -114px;
+        //opacity: 0;
+        //pointer-events: none;
+        //transition: all .2s ease-in-out;
+        //
+        //&.visible {
+        //  margin-bottom: 0;
+        //  opacity: 1;
+        //  pointer-events: all;
+        //}
+
+        li {
+            margin: 0;
+            border-top: 1px solid rgba($cookie-consent-dark, 0.1);
+        }
+    }
+
+    &__tab {
+        display: flex;
+        align-items: stretch;
+    }
+
+    &__option {
+        flex: 1 1 auto;
+        display: flex;
+        align-items: center;
+        padding: 15px $cookie-consent-horizontal-padding 17px;
+        user-select: none;
+
+        &:not([data-required="true"]):hover {
+            background: rgba($cookie-consent-dark, 0.05);
+        }
+
+        input {
+            margin-right: 10px;
+        }
+    }
+
+    &__tab-toggle {
+        position: relative;
+        flex: 0 0 auto;
+        display: block;
+        width: 55px;
+        min-height: 55px;
+        padding: 10px;
+        background: rgba($cookie-consent-dark, 0);
+        line-height: 0;
+
+        &:hover {
+            background: rgba($cookie-consent-dark, 0.05);
+        }
+
+        & > svg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -6px;
+            margin-left: -9px;
+            width: 18px;
+            height: 11px;
+            fill: #000000;
+        }
+
+        &[aria-selected="true"] > svg {
+            transform: scaleY(-1);
+        }
+    }
+
+    &__tab-panel {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.35s;
+
+        &[aria-hidden="true"] {
+            display: none;
+        }
+    }
+
+    &__tab-description {
+        padding: 20px $cookie-consent-horizontal-padding;
+        background: rgba($cookie-consent-dark, 0.05);
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 25px;
+            width: 0;
+            height: 0;
+            border: 8px solid transparent;
+            border-top-color: $cookie-consent-light;
+            border-bottom: 0;
+        }
+    }
+
+    &__button {
+        outline: none;
+        border: none;
+        transition: all linear .2s;
+        width: 100%;
+        min-height: 55px;
+        font-weight: bold;
+        line-height: 1.1;
+        text-decoration: none;
+        text-align: center;
+        cursor: pointer;
+        appearance: none;
+        background: #000000;
+        background-size: 200%;
+        color: #fff;
+
+        position: relative;
+        z-index: 1;
+
+        &:focus, &:hover {
+            background-position: left 0;
+        }
+    }
+}

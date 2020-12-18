@@ -24,3 +24,9 @@ export const getEntryByDotString = (object, entryString) => {
     return undefined;
   }, object);
 };
+
+export const htmlToElement = (html) => {
+  const placeholder = document.createElement('div');
+  placeholder.innerHTML = html;
+  return placeholder.children.length ? placeholder.firstElementChild : undefined;
+};

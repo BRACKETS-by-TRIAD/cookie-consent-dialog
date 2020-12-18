@@ -1,4 +1,3 @@
-import { parseJson } from '@grrr/utils';
 import Storage from './storage';
 
 const KEY_SUFFIX = 'preferences';
@@ -12,7 +11,7 @@ const Preferences = prefix => {
 
   const storage = Storage();
 
-  const getAll = () => parseJson(storage.get(KEY)) || [];
+  const getAll = () => JSON.parse(storage.get(KEY)) || [];
   const get = id => getAll().find(type => type.id === id);
   const getState = id => get(id) && get(id).accepted;
   const hasPreferences = () => storage.has(KEY) && getAll().length;

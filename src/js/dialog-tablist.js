@@ -1,10 +1,10 @@
-import { htmlToElement } from '@grrr/utils';
+import { htmlToElement } from './utils';
 import EventDispatcher from './event-dispatcher';
 
 /**
  * Dialog tab list with cookie tabs.
  */
-const DialogTabList = ({ config, preferences }) => {
+const DialogTablist = ({ config, preferences }) => {
 
   const events = EventDispatcher();
 
@@ -131,4 +131,4 @@ const DialogTabList = ({ config, preferences }) => {
 
 };
 
-export default DialogTabList;
+export default DialogTablist;
