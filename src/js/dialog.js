@@ -10,6 +10,8 @@ const Dialog = ({ config, preferences }) => {
   const tabList = DialogTablist({ config, preferences });
   const events = EventDispatcher();
 
+  const LAYOUT = config.get('layout');
+  const POSITION = config.get('position');
   const TYPE = config.get('type');
   const PREFIX = config.get('prefix');
 
@@ -20,18 +22,36 @@ const Dialog = ({ config, preferences }) => {
    * Render dialog element.
    */
   const renderDialog = () => {
+    let classes = '';
+    if (LAYOUT === 'banner') {
+      classes = `${PREFIX}--banner ${PREFIX}--${POSITION === 'top' ? 'top' : 'bottom'}`;
+    } else if (LAYOUT === 'modal') {
+      classes = `${PREFIX}--modal`;
+    } else if (LAYOUT === 'popup') {
+      classes = `${PREFIX}--popup ${PREFIX}--${POSITION === 'left' ? 'left' : 'right'}`;
+    }
+
+    let policyLink = config.get('labels.policyLink.href') ? `<a href="${config.get('labels.policyLink.href')}" target="_blank">${config.get('labels.policyLink.text')}</a>` : '';
+    let settingsLink = config.get('collapsible') ? `<a id="${PREFIX}-settings" href="javascript:void(0);">${config.get('labels.settingsLink.text')}</a>` : '';
+
     return `
-      <aside id="${PREFIX}" class="${PREFIX} js-cookie-bar" role="dialog" aria-live="polite" aria-describedby="${PREFIX}-description" aria-hidden="true" tabindex="0">
+      <aside id="${PREFIX}" class="${PREFIX} ${classes} js-cookie-bar" role="dialog" aria-live="polite" aria-describedby="${PREFIX}-description" aria-hidden="true" tabindex="0">
         <!--googleoff: all-->
-        <header class="${PREFIX}__header" id="${PREFIX}-description">
-          <h1>${config.get('labels.title')}</h1>
-          ${config.get('labels.description')}
-        </header>
-        <form>
-          <button class="${PREFIX}__button" aria-label="${config.get('labels.aria.button')}">
-            <span>${config.get('labels.button.default')}</span>
-          </button>
-        </form>
+        <div class="${PREFIX}__inner">
+          <header class="${PREFIX}__header" id="${PREFIX}-description">
+            <h1>${config.get('labels.title')}</h1>
+            ${config.get('labels.description')}
+            <div class="${PREFIX}__links">
+                ${policyLink}
+                ${settingsLink}
+            </div>
+          </header>
+          <form>
+            <button class="${PREFIX}__button" aria-label="${config.get('labels.aria.button')}">
+              <span>${config.get('labels.button.default')}</span>
+            </button>
+          </form>
+        </div>
         <!--googleon: all-->
       </aside>
     `;
@@ -43,6 +63,7 @@ const Dialog = ({ config, preferences }) => {
   const dialog = htmlToElement(renderDialog());
   const form = dialog.querySelector('form');
   const button = form.querySelector('button');
+  const settingsLink = dialog.querySelector(`#${PREFIX}-settings`);
 
   /**
    * Hide/show helpers.
@@ -139,6 +160,16 @@ const Dialog = ({ config, preferences }) => {
         updateButtonLabel(config.get('labels.button.acceptAll'));
         form.addEventListener('change', e => {
           updateButtonLabel(config.get('labels.button.default'));
+        });
+      }
+
+      if (settingsLink) {
+        tabList.element.classList.add('hidden');
+
+        settingsLink.addEventListener('click', function(event) {
+          event.preventDefault();
+          tabList.element.classList.toggle('hidden');
+          tabList.element.classList.toggle('visible');
         });
       }
     },

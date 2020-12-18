@@ -4,7 +4,8 @@
   "description": "Cookie consent banner",
   "scripts": {
     "styles": "sass src/scss/styles.scss dist/styles.css",
-    "build": "webpack && npm run styles"
+    "build": "webpack && npm run styles",
+    "watch-styles": "sass --watch src/scss/styles.scss dist/styles.css"
   },
   "keywords": [
     "cookie consent",
