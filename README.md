@@ -4,30 +4,24 @@
 
 ### JavaScript utility library
 
-- No dependencies
+- No dependencies. Really
+- Choose between three templates (`banner`, `popup` or `overlay`)
 - Choose between `checkbox` or `radio` inputs
 - Customizable cookie types (identifiers, optional/required, pre-checked)
 - Conditional script tags, iframes and elements based on cookie consent and type
+- Easily customizable styles
 
-Built with ❤️ by [GRRR](https://grrr.tech).
-
-<img src="https://user-images.githubusercontent.com/1607628/70984703-3cd84100-20bb-11ea-9fa0-0d23c49c0d94.png" alt="Screenshot of the GDPR proof cookie consent dialog from @grrr/cookie-consent with checkbox inputs" width="422"/><img src="https://user-images.githubusercontent.com/1607628/80074854-18e5aa00-854a-11ea-90db-f71ec1484a00.png" alt="Screenshot of the GDPR proof cookie consent dialog from @grrr/cookie-consent with radio inputs" width="422"/>
+Built with ❤️ by [Brackets](https://brackets.sk) but heavily inspired by [GRRR](https://grrr.tech).
 
 ## Installation
 
-```sh
-$ npm install @grrr/cookie-consent
-```
-
-Note: depending on your setup [additional configuration might be needed](https://github.com/grrr-amsterdam/cookie-consent/wiki/Usage-with-build-tools). This package is published with untranspiled JavaScript, as EcmaScript Modules (ESM).
+Todo
 
 ## Usage
 
-Import the module and initialize it:
+Initialize the module:
 
 ```js
-import CookieConsent from '@grrr/cookie-consent';
-
 const cookieConsent = CookieConsent({
   cookies: [
     {
@@ -88,6 +82,10 @@ All options except `cookies` are optional. They will fall back to the defaults, 
 
 ```js
 {
+  template: 'popup',        // Can be `banner` (floating on top or bottom) or `popup` (floating on left or right side  of the screen) or `overlay` (centered in the middle of the page)
+  position: 'left',         // Can be `top` or `bottom` for banner layout, `left` or `right` for popup layout
+  collapsible: true,        // Determines whether cookie listing will be collabsible by user or not
+  
   type: 'checkbox',         // Can be `checkbox` or `radio`.
   prefix: 'cookie-consent', // The prefix used for styling and identifiers.
   append: true,             // By default the dialog is appended before the `main` tag or
@@ -102,6 +100,7 @@ All options except `cookies` are optional. They will fall back to the defaults, 
       description: '...',   // The description used in the dialog.
       required: false,      // Mark a cookie required (ignored when type is `radio`).
       checked: false,       // The default checked state (only valid when not `required`).
+      collabsible: true     // Determines whether cookie description will be collabsible in accordion
     },
   ],
   // Labels to provide content for the dialog.
@@ -109,6 +108,12 @@ All options except `cookies` are optional. They will fall back to the defaults, 
     title: 'Cookies & Privacy',
     description: `<p>This site makes use of third-party cookies. Read more in our
                   <a href="/privacy-policy">privacy policy</a>.</p>`,
+    // Policy link or `learn more` link can be eaither par of the description html or standalone link bellow description with the use of configuration bellow
+    policyLink: {
+      href: '#', 
+      text: 'More info'
+    },
+            
     // Button labels based on state and preferences.
     button: {
       // The default button label.
@@ -253,12 +258,6 @@ No styling is being applied by the JavaScript module. However, there is a defaul
 
 ### Stylesheet
 
-View the [base stylesheet](https://github.com/grrr-amsterdam/cookie-consent/tree/master/styles/cookie-consent.scss). 
+View the [base stylesheet](https://https://github.com/timoransky/cookie-consent/blob/master/src/scss/styles.scss). 
 
-Note: no vendor prefixes are applied. We recommend using something like [Autoprefixer](https://github.com/postcss/autoprefixer) to do that automatically. 
-
-### Interface
-
-With the styling from the base module applied, the interface will look roughly like this (fonts, sizes and margins might differ):
-
-<img src="https://user-images.githubusercontent.com/1607628/70981646-d43a9580-20b5-11ea-8308-ddef988afde0.png" alt="Screenshot of the GDPR proof cookie consent dialog from @grrr/cookie-consent" width="834">
+Note: no vendor prefixes are applied. We recommend using something like [Autoprefixer](https://github.com/postcss/autoprefixer) to do that automatically.

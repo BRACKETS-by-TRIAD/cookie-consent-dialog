@@ -61,7 +61,7 @@
 
         function initCookieConsent(template = 'overlay') {
             return window.CookieConsent({
-                template: template,           // Can be `banner` (floating on top or bottom) or `popup` (floating on left or right side  of the screen) or `overlay` (centered in the middle of the page)
+                template: template,       // Can be `banner` (floating on top or bottom) or `popup` (floating on left or right side  of the screen) or `overlay` (centered in the middle of the page)
                 position: 'left',         // Can be `top` or `bottom` for banner layout, `left` or `right` for popup layout
                 collapsible: true,
 
@@ -79,7 +79,7 @@
                         description: 'Some description',   // The description used in the dialog.
                         required: false,      // Mark a cookie required (ignored when type is `radio`).
                         checked: false,       // The default checked state (only valid when not `required`).
-                        collapsible: false
+                        collapsible: true
                     },
                 ],
                 // Labels to provide content for the dialog.
