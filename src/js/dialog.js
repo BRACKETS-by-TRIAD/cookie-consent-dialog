@@ -10,7 +10,7 @@ const Dialog = ({ config, preferences }) => {
   const tabList = DialogTablist({ config, preferences });
   const events = EventDispatcher();
 
-  const LAYOUT = config.get('layout');
+  const TEMPLATE = config.get('template');
   const POSITION = config.get('position');
   const TYPE = config.get('type');
   const PREFIX = config.get('prefix');
@@ -23,11 +23,11 @@ const Dialog = ({ config, preferences }) => {
    */
   const renderDialog = () => {
     let classes = '';
-    if (LAYOUT === 'banner') {
+    if (TEMPLATE === 'banner') {
       classes = `${PREFIX}--banner ${PREFIX}--${POSITION === 'top' ? 'top' : 'bottom'}`;
-    } else if (LAYOUT === 'modal') {
-      classes = `${PREFIX}--modal`;
-    } else if (LAYOUT === 'popup') {
+    } else if (TEMPLATE === 'overlay') {
+      classes = `${PREFIX}--overlay`;
+    } else if (TEMPLATE === 'popup') {
       classes = `${PREFIX}--popup ${PREFIX}--${POSITION === 'left' ? 'left' : 'right'}`;
     }
 
@@ -38,15 +38,16 @@ const Dialog = ({ config, preferences }) => {
       <aside id="${PREFIX}" class="${PREFIX} ${classes} js-cookie-bar" role="dialog" aria-live="polite" aria-describedby="${PREFIX}-description" aria-hidden="true" tabindex="0">
         <!--googleoff: all-->
         <div class="${PREFIX}__inner">
-          <header class="${PREFIX}__header" id="${PREFIX}-description">
-            <h1>${config.get('labels.title')}</h1>
-            ${config.get('labels.description')}
-            <div class="${PREFIX}__links">
-                ${policyLink}
-                ${settingsLink}
-            </div>
-          </header>
           <form>
+            <header class="${PREFIX}__header" id="${PREFIX}-description">
+              <h1>${config.get('labels.title')}</h1>
+              ${config.get('labels.description')}
+              <div class="${PREFIX}__links">
+                  ${policyLink}
+                  ${settingsLink}
+              </div>
+            </header>
+              
             <button class="${PREFIX}__button" aria-label="${config.get('labels.aria.button')}">
               <span>${config.get('labels.button.default')}</span>
             </button>
@@ -147,7 +148,7 @@ const Dialog = ({ config, preferences }) => {
     init() {
       // Initialize tab list and append it to the form.
       tabList.init();
-      form.insertBefore(tabList.element, form.firstElementChild);
+      form.insertBefore(tabList.element, form.lastElementChild);
 
       // Attach submit listener to the form.
       form.addEventListener('submit', submitHandler);

@@ -18,22 +18,50 @@
         html, body {
           height: 100%;
         }
+
+        body {
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        }
+
+        main {
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+
+        .row {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .row button {
+          margin: .5em;
+          padding: .25em;
+        }
     </style>
 </head>
 <body>
+    <main>
+        <div class="row">
+            <button type="button" class="js-showDialog" data-template="popup">Show popup dialog</button>
+            <button type="button" class="js-showDialog" data-template="banner">Show banner dialog</button>
+            <button type="button" class="js-showDialog" data-template="overlay">Show overlay dialog</button>
+        </div>
 
-    <button type="button" class="js-showDialog" data-layout="popup">Show popup dialog</button>
-    <button type="button" class="js-showDialog" data-layout="banner">Show banner dialog</button>
-    <button type="button" class="js-showDialog" data-layout="modal">Show modal dialog</button>
-    <button type="button" class="js-hideDialog">Hide dialog</button>
+        <div class="row">
+            <button type="button" class="js-hideDialog">Hide dialog</button>
+        </div>
+    </main>
 
     <script src="./main.js"></script>
 
     <script>
 
-        function initCookieConsent(layout = 'modal') {
+        function initCookieConsent(template = 'overlay') {
             return window.CookieConsent({
-                layout: layout,           // Can be `banner` (floating on top or bottom) or `popup` (floating on left or right side  of the screen) or `modal` (centered in the middle of the page)
+                template: template,           // Can be `banner` (floating on top or bottom) or `popup` (floating on left or right side  of the screen) or `overlay` (centered in the middle of the page)
                 position: 'left',         // Can be `top` or `bottom` for banner layout, `left` or `right` for popup layout
                 collapsible: true,
 
@@ -51,6 +79,7 @@
                         description: 'Some description',   // The description used in the dialog.
                         required: false,      // Mark a cookie required (ignored when type is `radio`).
                         checked: false,       // The default checked state (only valid when not `required`).
+                        collapsible: false
                     },
                 ],
                 // Labels to provide content for the dialog.
@@ -91,7 +120,7 @@
                     cookieConsent.getDialog().remove()
                     cookieConsent = null;
                 }
-                cookieConsent = initCookieConsent(buttons[i].dataset.layout);
+                cookieConsent = initCookieConsent(buttons[i].dataset.template);
                 cookieConsent.showDialog();
             }, false);
         }

@@ -14,7 +14,7 @@ const DialogTablist = ({ config, preferences }) => {
   /**
    * Render cookie tabs.
    */
-  const renderTab = ({ id, label, description, required, checked, accepted }, index) => {
+  const renderTab = ({ id, label, description, required, checked, collapsible, accepted }, index) => {
 
     /**
      * Check if the checkbox should be checked:
@@ -29,6 +29,34 @@ const DialogTablist = ({ config, preferences }) => {
       : required === true
         ? required
         : checked;
+
+    if (!collapsible) {
+      return `
+        <li role="presentation">
+        <header class="${PREFIX}__tab">
+          <label class="${PREFIX}__option" data-required="${required}">
+            <input type="${TYPE === 'radio' ? 'radio' : 'checkbox'}" name="${PREFIX}-input" value="${id}" ${shouldBeChecked ? 'checked' : ''} ${required && TYPE !== 'radio' ? 'disabled' : ''}>
+            <span>
+              ${label} <br>
+              <small>
+                  ${description}
+              </small>
+            </span>
+          </label>
+        </header>
+        <div
+          class="${PREFIX}__tab-panel"
+          role="tabpanel"
+          id="${PREFIX}-tabpanel-${index}"
+          aria-labelledby="${PREFIX}-tab-${index}"
+          aria-hidden="true">
+          <div class="${PREFIX}__tab-description">
+            ${description}
+          </div>
+        </div>
+      </li>
+      `;
+    }
 
     return `
       <li role="presentation">
