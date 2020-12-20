@@ -149,7 +149,7 @@ All options except `cookies` are optional. They will fall back to the defaults, 
 
 ## API
 
-- [CookieConsent()](#cookieconsentoptions-object)
+- [CookieConsentDialog()](#cookieconsentoptions-object)
 - [getDialog()](#getdialog)
 - [showDialog()](#showdialog)
 - [hideDialog()](#hidedialog)
@@ -162,7 +162,7 @@ All options except `cookies` are optional. They will fall back to the defaults, 
 Will create a new instance.
 
 ```js
-const cookieConsent = Index({
+const cookieConsent = CookieConsentDialog({
     cookies: [
         // ...
     ]
@@ -172,9 +172,7 @@ const cookieConsent = Index({
 To make the instance globally available (for instance to add event listeners elsewhere), add it as a global after the instance has been created:
 
 ```js
-const cookieConsent = CookieConsent();
-
-window.Index = cookieConsent;
+window.CookieConsentDialog = CookieConsentDialog();
 ```
 
 ### getDialog()
