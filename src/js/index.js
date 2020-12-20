@@ -7,7 +7,7 @@ import Preferences from './preferences';
 /**
  * Main constructor, which provides the API to the outside.
  */
-const CookieConsent = settings => {
+const CookieConsentDialog = settings => {
 
   // Show warning when settings are missing.
   if (typeof settings !== 'object' || !Object.keys(settings).length) {
@@ -58,6 +58,4 @@ const CookieConsent = settings => {
 
 };
 
-window.CookieConsent = CookieConsent;
-
-export default CookieConsent;
+export default CookieConsentDialog;

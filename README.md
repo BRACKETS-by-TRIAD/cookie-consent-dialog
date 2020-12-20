@@ -13,15 +13,23 @@
 
 Built with ❤️ by [Brackets](https://brackets.sk) but heavily inspired by [GRRR](https://grrr.tech).
 
+## Preview
+
+![GIF preview](https://user-images.githubusercontent.com/15653065/102721682-aad1cc80-42fc-11eb-890f-c341ce2685e9.gif)
+
 ## Installation
 
-Todo
+```shell
+npm i @timoransky/cookie-consent-dialog
+```
 
 ## Usage
 
 Initialize the module:
 
 ```js
+import CookieConsent from "@timoransky/cookie-consent-dialog";
+
 const cookieConsent = CookieConsent({
   cookies: [
     {

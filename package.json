@@ -1,6 +1,6 @@
 {
   "name": "@timoransky/cookie-consent-dialog",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Cookie consent dialog",
   "main": "./src/js/index.js",
   "scripts": {
@@ -14,6 +14,10 @@
   ],
   "author": "Brackets",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/timoransky/cookie-consent-dialog.git"
+  },
   "devDependencies": {
     "sass": "^1.30.0",
     "sass-loader": "^10.1.0",
