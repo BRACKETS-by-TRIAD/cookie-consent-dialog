@@ -1,5 +1,5 @@
 export const DEFAULTS = {
-  layout: 'popup',
+  template: 'popup',
   position: 'right',
   type: 'checkbox',
   prefix: 'cookie-consent',

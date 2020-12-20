@@ -3,7 +3,10 @@ const path = require('path');
 module.exports = {
     entry: './src/js/index.js',
     output: {
-        filename: 'main.js',
+        filename: 'index.js',
         path: path.resolve(__dirname, 'dist'),
+        libraryTarget: 'var',
+        libraryExport: 'default',
+        library: 'CookieConsentDialog'
     }
 };

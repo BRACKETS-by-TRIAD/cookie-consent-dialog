@@ -1,14 +1,15 @@
 {
   "name": "@timoransky/cookie-consent-dialog",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Cookie consent dialog",
   "main": "./src/js/index.js",
   "scripts": {
-    "styles": "sass src/scss/styles.scss dist/styles.css",
+    "styles": "sass src/scss/index.scss dist/index.css",
     "js": "webpack",
     "build": "npm run js && npm run styles"
   },
   "keywords": [
+    "brackets",
     "cookie consent",
     "cookie dialog"
   ],

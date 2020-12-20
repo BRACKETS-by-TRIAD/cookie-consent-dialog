@@ -19,18 +19,26 @@ Built with ❤️ by [Brackets](https://brackets.sk) but heavily inspired by [GR
 
 ## Installation
 
+Using npm:
 ```shell
 npm i @timoransky/cookie-consent-dialog
 ```
 
+Using html script tag:
+```html
+<script src="node_modules/@timoransky/cookie-consent-dialog/dist/index.js"></script>
+```
+
 ## Usage
 
-Initialize the module:
-
+Link the script as seen above or import the module like so:
 ```js
-import CookieConsent from "@timoransky/cookie-consent-dialog";
+import CookieConsentDialog from "@timoransky/cookie-consent-dialog";
+```
 
-const cookieConsent = CookieConsent({
+Initialize the dialog:
+```js
+const cookieConsent = CookieConsentDialog({
   cookies: [
     {
       id: 'functional',
@@ -92,7 +100,7 @@ All options except `cookies` are optional. They will fall back to the defaults, 
 {
   template: 'popup',        // Can be `banner` (floating on top or bottom) or `popup` (floating on left or right side  of the screen) or `overlay` (centered in the middle of the page)
   position: 'left',         // Can be `top` or `bottom` for banner layout, `left` or `right` for popup layout
-  collapsible: true,        // Determines whether cookie listing will be collabsible by user or not
+  collapsible: true,        // Determines whether cookie listing will be collapsible by user or not
   
   type: 'checkbox',         // Can be `checkbox` or `radio`.
   prefix: 'cookie-consent', // The prefix used for styling and identifiers.
@@ -108,7 +116,7 @@ All options except `cookies` are optional. They will fall back to the defaults, 
       description: '...',   // The description used in the dialog.
       required: false,      // Mark a cookie required (ignored when type is `radio`).
       checked: false,       // The default checked state (only valid when not `required`).
-      collabsible: true     // Determines whether cookie description will be collabsible in accordion
+      collapsible: true     // Determines whether cookie description will be collapsible in accordion
     },
   ],
   // Labels to provide content for the dialog.
@@ -266,6 +274,29 @@ No styling is being applied by the JavaScript module. However, there is a defaul
 
 ### Stylesheet
 
-View the [base stylesheet](https://https://github.com/timoransky/cookie-consent/blob/master/src/scss/styles.scss). 
+View the [base stylesheet](https://https://github.com/timoransky/cookie-consent-dialog/blob/master/src/scss/styles.scss). 
 
 Note: no vendor prefixes are applied. We recommend using something like [Autoprefixer](https://github.com/postcss/autoprefixer) to do that automatically.
+
+### Customization
+
+Default SCSS variables are listed bellow:
+
+```scss
+$cookie-consent-breakpoint: 40em !default;
+$cookie-consent-text: #000000 !default;
+$cookie-consent-bg: #fff !default;
+$cookie-consent-btn-text: #fff !default;
+$cookie-consent-btn-bg: #f5a816 !default;
+$cookie-consent-horizontal-padding: 24px !default;
+$cookie-consent-border-radius: 4px !default;
+```
+
+These can be edited by defining them before importing base stylesheet file. For example like this:
+
+```scss
+$cookie-consent-btn-text: #000;
+$cookie-consent-btn-bg: #bada55;
+
+@import "~@timoransky/cookie-consent-dialog/src/scss/styles";
+```
