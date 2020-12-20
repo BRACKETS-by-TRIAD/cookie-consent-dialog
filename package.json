@@ -1,18 +1,19 @@
 {
-  "name": "cookie-consent",
+  "name": "@timoransky/cookie-consent-dialog",
   "version": "1.0.0",
-  "description": "Cookie consent banner",
+  "description": "Cookie consent dialog",
+  "main": "./src/js/index.js",
   "scripts": {
     "styles": "sass src/scss/styles.scss dist/styles.css",
-    "build": "webpack && npm run styles",
-    "watch-styles": "sass --watch src/scss/styles.scss dist/styles.css"
+    "js": "webpack",
+    "build": "npm run js && npm run styles"
   },
   "keywords": [
     "cookie consent",
     "cookie dialog"
   ],
-  "author": "",
-  "license": "ISC",
+  "author": "Brackets",
+  "license": "MIT",
   "devDependencies": {
     "sass": "^1.30.0",
     "sass-loader": "^10.1.0",
