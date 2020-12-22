@@ -287,7 +287,13 @@
         margin-top: 1em;
 
         a {
+            color: $cookie-consent-link-text;
+            text-decoration: underline;
             display: inline-block;
+
+            &:hover {
+                text-decoration: none;
+            }
 
             + a {
                 margin-left: $cookie-consent-horizontal-padding;

@@ -56,6 +56,13 @@ const cookieConsent = CookieConsentDialog({
 });
 ```
 
+Don't forget to import base stylesheet into your main sass/scss file:
+```scss
+@import "~@timoransky/cookie-consent-dialog/src/scss/index";
+```
+
+For more style customization options, see the [styling section](#styling)
+
 ### Conditional scripts
 
 Conditionally show `script` tags. Add the `data-cookie-consent`-attribute with the id of the required cookie type, and disable the script by setting the `type` to `text/plain`:
@@ -296,5 +303,5 @@ These can be edited by defining them before importing base stylesheet file. For 
 $cookie-consent-btn-text: #000;
 $cookie-consent-btn-bg: #bada55;
 
-@import "~@timoransky/cookie-consent-dialog/src/scss/styles";
+@import "~@timoransky/cookie-consent-dialog/src/scss/index";
 ```
