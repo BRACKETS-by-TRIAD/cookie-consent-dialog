@@ -11,14 +11,7 @@ module.exports = {
                     loader: 'babel-loader',
                     options: {
                         presets: [
-                            [
-                                '@babel/preset-env',
-                                {
-                                    targets: "defaults",
-                                    useBuiltIns: "usage",
-                                    corejs: 3
-                                }
-                            ]
+                            '@babel/preset-env'
                         ],
                         plugins: [
                             [
@@ -34,7 +27,7 @@ module.exports = {
         ]
     },
     output: {
-        filename: 'index.js',
+        filename: 'index.min.js',
         path: path.resolve(__dirname, 'dist'),
         libraryTarget: 'var',
         libraryExport: 'default',

@@ -4,9 +4,9 @@
   "description": "Cookie consent dialog",
   "main": "./src/js/index.js",
   "scripts": {
-    "styles": "sass src/scss/index.scss dist/index.css",
-    "js": "webpack",
-    "build": "webpack --mode production && npm run styles"
+    "css": "sass --no-source-map --style=compressed src/scss/index.scss dist/index.min.css && postcss dist/index.min.css --replace --use autoprefixer",
+    "js": "webpack --mode production",
+    "build": "npm run js && npm run css"
   },
   "keywords": [
     "brackets",
@@ -21,21 +21,18 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
-    "@babel/plugin-transform-arrow-functions": "^7.12.1",
     "@babel/plugin-transform-runtime": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
     "babel-loader": "^8.2.2",
-    "babel-plugin-transform-runtime": "^6.23.0",
+    "postcss": "^8.2.1",
+    "postcss-cli": "^8.3.1",
     "sass": "^1.30.0",
-    "sass-loader": "^10.1.0",
     "webpack": "^5.10.0",
-    "webpack-bundle-analyzer": "^4.3.0",
     "webpack-cli": "^4.2.0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.12.5",
     "@babel/runtime-corejs3": "^7.12.5",
-    "babel-runtime": "^6.26.0",
+    "autoprefixer": "^10.1.0",
     "core-js": "^3.8.1"
   }
 }
