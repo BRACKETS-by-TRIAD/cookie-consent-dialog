@@ -245,7 +245,12 @@
   margin-top: 1em;
 }
 .cookie-consent__links a {
+  color: #f5a816;
+  text-decoration: underline;
   display: inline-block;
+}
+.cookie-consent__links a:hover {
+  text-decoration: none;
 }
 .cookie-consent__links a + a {
   margin-left: 24px;
