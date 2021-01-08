@@ -1,6 +1,6 @@
 {
   "name": "@brackets/cookie-consent-dialog",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Cookie consent dialog",
   "main": "./src/js/index.js",
   "scripts": {
