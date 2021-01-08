@@ -1,7 +1,5 @@
 # Cookie Consent
 
-[![Build Status](https://travis-ci.com/grrr-amsterdam/cookie-consent.svg?branch=master)](https://travis-ci.com/grrr-amsterdam/cookie-consent)
-
 ### JavaScript utility library
 
 - No dependencies. Really
@@ -21,7 +19,7 @@ Built with ❤️ by [Brackets](https://brackets.sk) but heavily inspired by [GR
 
 Using npm:
 ```shell
-npm i @timoransky/cookie-consent-dialog
+npm i @brackets/cookie-consent-dialog
 ```
 
 Using html script tag:
