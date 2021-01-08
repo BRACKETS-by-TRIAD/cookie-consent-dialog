@@ -1,6 +1,6 @@
 {
-  "name": "@timoransky/cookie-consent-dialog",
-  "version": "1.0.4",
+  "name": "@brackets/cookie-consent-dialog",
+  "version": "1.0.0",
   "description": "Cookie consent dialog",
   "main": "./src/js/index.js",
   "scripts": {
@@ -17,7 +17,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/timoransky/cookie-consent-dialog.git"
+    "url": "https://github.com/BRACKETS-by-TRIAD/cookie-consent-dialog"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
