@@ -1,7 +1,5 @@
 # Cookie Consent
 
-[![Build Status](https://travis-ci.com/grrr-amsterdam/cookie-consent.svg?branch=master)](https://travis-ci.com/grrr-amsterdam/cookie-consent)
-
 ### JavaScript utility library
 
 - No dependencies. Really
@@ -21,19 +19,19 @@ Built with ❤️ by [Brackets](https://brackets.sk) but heavily inspired by [GR
 
 Using npm:
 ```shell
-npm i @timoransky/cookie-consent-dialog
+npm i @brackets/cookie-consent-dialog
 ```
 
 Using html script tag:
 ```html
-<script src="node_modules/@timoransky/cookie-consent-dialog/dist/index.js"></script>
+<script src="node_modules/@brackets/cookie-consent-dialog/dist/index.js"></script>
 ```
 
 ## Usage
 
 Link the script as seen above or import the module like so:
 ```js
-import CookieConsentDialog from "@timoransky/cookie-consent-dialog";
+import CookieConsentDialog from "@brackets/cookie-consent-dialog";
 ```
 
 Initialize the dialog:
@@ -58,7 +56,7 @@ const cookieConsent = CookieConsentDialog({
 
 Don't forget to import base stylesheet into your main sass/scss file:
 ```scss
-@import "~@timoransky/cookie-consent-dialog/src/scss/index";
+@import "~@brackets/cookie-consent-dialog/src/scss/index";
 ```
 
 For more style customization options, see the [styling section](#styling)
@@ -279,7 +277,7 @@ No styling is being applied by the JavaScript module. However, there is a defaul
 
 ### Stylesheet
 
-View the [base stylesheet](https://https://github.com/timoransky/cookie-consent-dialog/blob/master/src/scss/styles.scss). 
+View the [base stylesheet](https://https://github.com/brackets/cookie-consent-dialog/blob/master/src/scss/styles.scss). 
 
 Note: no vendor prefixes are applied. We recommend using something like [Autoprefixer](https://github.com/postcss/autoprefixer) to do that automatically.
 
@@ -303,5 +301,5 @@ These can be edited by defining them before importing base stylesheet file. For 
 $cookie-consent-btn-text: #000;
 $cookie-consent-btn-bg: #bada55;
 
-@import "~@timoransky/cookie-consent-dialog/src/scss/index";
+@import "~@brackets/cookie-consent-dialog/src/scss/index";
 ```
