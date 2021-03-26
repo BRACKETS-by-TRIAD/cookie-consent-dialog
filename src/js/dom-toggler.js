@@ -13,7 +13,9 @@ const DomToggler = config => {
    */
   const appendScript = script => {
     const newScript = document.createElement('script');
-    if (script.src) {
+    if (script.dataset.src) {
+      newScript.src = script.dataset.src;
+    } else if (script.src) {
       newScript.src = script.src;
     } else {
       newScript.innerHTML = script.innerHTML;
