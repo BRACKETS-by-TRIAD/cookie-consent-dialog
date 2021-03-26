@@ -39,14 +39,14 @@ const Dialog = ({ config, preferences }) => {
         <!--googleoff: all-->
         <div class="${PREFIX}__inner">
           <form>
-            <header class="${PREFIX}__header" id="${PREFIX}-description">
+            <div class="${PREFIX}__header" id="${PREFIX}-description">
               <h1>${config.get('labels.title')}</h1>
               ${config.get('labels.description')}
               <div class="${PREFIX}__links">
                   ${policyLink}
                   ${settingsLink}
               </div>
-            </header>
+            </div>
               
             <button class="${PREFIX}__button" aria-label="${config.get('labels.aria.button')}">
               <span>${config.get('labels.button.default')}</span>

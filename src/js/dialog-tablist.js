@@ -33,7 +33,7 @@ const DialogTablist = ({ config, preferences }) => {
     if (!collapsible) {
       return `
         <li role="presentation">
-        <header class="${PREFIX}__tab">
+        <div class="${PREFIX}__tab">
           <label class="${PREFIX}__option" data-required="${required}">
             <input type="${TYPE === 'radio' ? 'radio' : 'checkbox'}" name="${PREFIX}-input" value="${id}" ${shouldBeChecked ? 'checked' : ''} ${required && TYPE !== 'radio' ? 'disabled' : ''}>
             <span>
@@ -43,7 +43,7 @@ const DialogTablist = ({ config, preferences }) => {
               </small>
             </span>
           </label>
-        </header>
+        </div>
         <div
           class="${PREFIX}__tab-panel"
           role="tabpanel"
