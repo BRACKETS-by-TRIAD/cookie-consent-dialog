@@ -167,7 +167,7 @@
             font-size: 20px;
             margin: 0 auto 0.5em;
 
-            @screen md {
+            @media (min-width: $cookie-consent-breakpoint) {
                 font-size: 26px;
             }
         }
