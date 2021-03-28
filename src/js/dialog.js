@@ -18,6 +18,8 @@ const Dialog = ({ config, preferences }) => {
   // Only allow the `acceptAllButton` when no preferences have been stored.
   const ACCEPT_ALL_BUTTON = config.get('acceptAllButton') && !preferences.hasPreferences();
 
+  let userChanged = false;
+
   /**
    * Render dialog element.
    */
@@ -106,7 +108,7 @@ const Dialog = ({ config, preferences }) => {
     const requiredCount = config.get('cookies').filter(c => c.required).length;
     const checkedCount = values.filter(v => v.accepted).length;
     const userOptionsChecked = checkedCount > requiredCount;
-    if (ACCEPT_ALL_BUTTON && TYPE === 'checkbox' && !userOptionsChecked) {
+    if (ACCEPT_ALL_BUTTON && TYPE === 'checkbox' && !userOptionsChecked && !userChanged) {
       return values.map(value => ({
         ...value,
         accepted: true,
@@ -160,6 +162,7 @@ const Dialog = ({ config, preferences }) => {
       if (ACCEPT_ALL_BUTTON) {
         updateButtonLabel(config.get('labels.button.acceptAll'));
         form.addEventListener('change', e => {
+          userChanged = true;
           updateButtonLabel(config.get('labels.button.default'));
         });
       }
