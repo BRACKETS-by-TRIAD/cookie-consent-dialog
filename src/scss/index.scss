@@ -1,328 +1,329 @@
 @import "variables";
 
 .cookie-consent {
-    $cookie-consent: &;
-    z-index: 10000;
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    max-height: 100%;
+  $cookie-consent: &;
+  z-index: 10000;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  max-height: 100%;
+  overflow: hidden;
+  transition: transform 0.5s, opacity 0.5s, visibility 0.5s;
+
+  &[aria-hidden="true"] {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(0, 100px);
+  }
+
+  &__inner {
+    width: 100%;
+    height: 100%;
+    background: $cookie-consent-bg;
+    color: $cookie-consent-text;
+    border-radius: $cookie-consent-border-radius;
     overflow: hidden;
-    transition: transform 0.5s, opacity 0.5s, visibility 0.5s;
+  }
+
+  &--popup {
+    transform: translate3d(0, 0, 0);
+    box-shadow: 0 15px 50px -12px rgba(0, 0, 0, 0.25);
+
+    @media (min-width: $cookie-consent-breakpoint) {
+      bottom: 25px;
+      max-width: 400px;
+      max-height: calc(100% - 50px);
+
+      &#{$cookie-consent}--right {
+        right: 25px;
+        left: auto;
+
+        &[aria-hidden="true"] {
+          transform: translate(100px, 0);
+        }
+      }
+
+      &#{$cookie-consent}--left {
+        right: auto;
+        left: 25px;
+
+        &[aria-hidden="true"] {
+          transform: translate(-100px, 0);
+        }
+      }
+    }
+  }
+
+  &--banner {
+    transform: translate3d(0, 0, 0);
+    box-shadow: 0 15px 50px -12px rgba(0, 0, 0, 0.25);
+
+    @media (min-width: $cookie-consent-breakpoint) {
+      max-width: 100%;
+      padding-right: $cookie-consent-horizontal-padding;
+
+      #{$cookie-consent}__inner form {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        max-width: 1170px;
+        margin: 0 auto;
+      }
+
+      #{$cookie-consent}__tab-list {
+        order: 2;
+        width: 100%;
+      }
+
+      #{$cookie-consent}__button {
+        width: auto;
+        min-height: 45px;
+        padding: 10px $cookie-consent-horizontal-padding;
+      }
+    }
+
+    &#{$cookie-consent}--top {
+      top: 0;
+      bottom: auto;
+
+      &[aria-hidden="true"] {
+        @media (min-width: $cookie-consent-breakpoint) {
+          transform: translate(0, -100%);
+        }
+      }
+    }
+
+    &#{$cookie-consent}--bottom {
+      top: auto;
+      bottom: 0;
+
+      &[aria-hidden="true"] {
+        @media (min-width: $cookie-consent-breakpoint) {
+          transform: translate(0, 100%);
+        }
+      }
+    }
+  }
+
+  &--overlay {
+    box-shadow: none;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(#000, 0.7);
+    padding: $cookie-consent-horizontal-padding;
 
     &[aria-hidden="true"] {
-        visibility: hidden;
-        opacity: 0;
-        pointer-events: none;
+      transform: translate(0, 0);
+
+      #{$cookie-consent}__inner {
         transform: translate(0, 100px);
+      }
     }
 
-    &__inner {
-        width: 100%;
-        height: 100%;
-        background: $cookie-consent-bg;
-        color: $cookie-consent-text;
-        border-radius: $cookie-consent-border-radius;
-        overflow: hidden;
+    #{$cookie-consent}__inner {
+      box-shadow: 0 15px 50px -12px rgba(0, 0, 0, 0.25);
+      max-width: 600px;
+      height: auto;
+      transform: translate(0, 0);
+      transition: transform 0.5s, opacity 0.5s, visibility 0.5s;
     }
 
-    &--popup {
-        transform: translate3d(0, 0, 0);
-        box-shadow: 0 15px 50px -12px rgba(0, 0, 0, 0.25);
+    #{$cookie-consent}__button {
+      min-height: 45px;
+      padding: 10px $cookie-consent-horizontal-padding;
+      display: block;
+      width: auto;
+      margin: $cookie-consent-horizontal-padding auto;
+    }
+  }
 
-        @media (min-width: $cookie-consent-breakpoint) {
-            bottom: 25px;
-            max-width: 400px;
-            max-height: calc(100% - 50px);
+  &__backdrop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9990;
+    background: #000000;
+  }
 
-            &#{$cookie-consent}--right {
-                right: 25px;
-                left: auto;
+  &__header {
+    padding: 20px $cookie-consent-horizontal-padding;
 
-                &[aria-hidden="true"] {
-                    transform: translate(100px, 0);
-                }
-            }
+    h2 {
+      font-size: 20px;
+      margin: 0 auto 0.5em;
 
-            &#{$cookie-consent}--left {
-                right: auto;
-                left: 25px;
-
-                &[aria-hidden="true"] {
-                    transform: translate(-100px, 0);
-                }
-            }
-        }
+      @media (min-width: $cookie-consent-breakpoint) {
+        font-size: 26px;
+      }
     }
 
-    &--banner {
-        transform: translate3d(0, 0, 0);
-        box-shadow: 0 15px 50px -12px rgba(0, 0, 0, 0.25);
+    p {
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
 
-        @media (min-width: $cookie-consent-breakpoint) {
-            max-width: 100%;
-            padding-right: $cookie-consent-horizontal-padding;
+  &__tab-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    transition: all 0.2s ease-in-out;
 
-            #{$cookie-consent}__inner form {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                flex-wrap: wrap;
-                max-width: 1170px;
-                margin: 0 auto;
-            }
-
-            #{$cookie-consent}__tab-list{
-                order: 2;
-                width: 100%;
-            }
-
-            #{$cookie-consent}__button {
-                width: auto;
-                min-height: 45px;
-                padding: 10px $cookie-consent-horizontal-padding;
-            }
-        }
-
-        &#{$cookie-consent}--top {
-            top: 0;
-            bottom: auto;
-
-            &[aria-hidden="true"] {
-                @media (min-width: $cookie-consent-breakpoint) {
-                    transform: translate(0, -100%);
-                }
-            }
-        }
-
-        &#{$cookie-consent}--bottom {
-            top: auto;
-            bottom: 0;
-
-            &[aria-hidden="true"] {
-                @media (min-width: $cookie-consent-breakpoint) {
-                    transform: translate(0, 100%);
-                }
-            }
-        }
+    &.hidden {
+      height: 0;
+      opacity: 0;
+      pointer-events: none;
     }
 
-    &--overlay {
-        box-shadow: none;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: rgba(#000, .7);
-        padding: $cookie-consent-horizontal-padding;;
-
-        &[aria-hidden="true"] {
-            transform: translate(0, 0);
-
-            #{$cookie-consent}__inner {
-                transform: translate(0, 100px);
-            }
-        }
-
-        #{$cookie-consent}__inner {
-            box-shadow: 0 15px 50px -12px rgba(0, 0, 0, 0.25);
-            max-width: 600px;
-            height: auto;
-            transform: translate(0, 0);
-            transition: transform 0.5s, opacity 0.5s, visibility 0.5s;
-        }
-
-        #{$cookie-consent}__button {
-            min-height: 45px;
-            padding: 10px $cookie-consent-horizontal-padding;
-            display: block;
-            width: auto;
-            margin: $cookie-consent-horizontal-padding auto;
-        }
+    &.visible {
+      height: auto;
+      opacity: 1;
+      pointer-events: all;
     }
 
-    &__backdrop {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100vw;
-        height: 100vh;
-        position: fixed;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 9990;
-        background: #000000;
+    li {
+      margin: 0;
+      border-top: 1px solid rgba($cookie-consent-text, 0.1);
+    }
+  }
+
+  &__tab {
+    display: flex;
+    align-items: stretch;
+  }
+
+  &__option {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    padding: 15px $cookie-consent-horizontal-padding 17px;
+    user-select: none;
+    cursor: pointer;
+
+    &:not([data-required="true"]):hover {
+      background: rgba($cookie-consent-text, 0.05);
     }
 
-    &__header {
-        padding: 20px $cookie-consent-horizontal-padding;
+    input {
+      margin-right: 10px;
+    }
+  }
 
-        h1 {
-            font-size: 20px;
-            margin: 0 auto 0.5em;
+  &__tab-toggle {
+    position: relative;
+    flex: 0 0 auto;
+    display: block;
+    width: 55px;
+    min-height: 55px;
+    padding: 10px;
+    background: rgba($cookie-consent-text, 0);
+    line-height: 0;
 
-            @media (min-width: $cookie-consent-breakpoint) {
-                font-size: 26px;
-            }
-        }
-
-        p {
-            &:last-child {
-                margin-bottom: 0;
-            }
-        }
+    &:hover {
+      background: rgba($cookie-consent-text, 0.05);
     }
 
-    &__tab-list {
-        margin: 0;
-        padding: 0;
-        list-style-type: none;
-        transition: all .2s ease-in-out;
-
-        &.hidden {
-            height: 0;
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        &.visible {
-            height: auto;
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        li {
-            margin: 0;
-            border-top: 1px solid rgba($cookie-consent-text, 0.1);
-        }
+    & > svg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -6px;
+      margin-left: -9px;
+      width: 18px;
+      height: 11px;
+      fill: #000000;
     }
 
-    &__tab {
-        display: flex;
-        align-items: stretch;
+    &[aria-selected="true"] > svg {
+      transform: scaleY(-1);
     }
+  }
 
-    &__option {
-        flex: 1 1 auto;
-        display: flex;
-        align-items: center;
-        padding: 15px $cookie-consent-horizontal-padding 17px;
-        user-select: none;
-        cursor: pointer;
+  &__tab-panel {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.35s;
 
-        &:not([data-required="true"]):hover {
-            background: rgba($cookie-consent-text, 0.05);
-        }
-
-        input {
-            margin-right: 10px;
-        }
+    &[aria-hidden="true"] {
+      display: none;
     }
+  }
 
-    &__tab-toggle {
-        position: relative;
-        flex: 0 0 auto;
-        display: block;
-        width: 55px;
-        min-height: 55px;
-        padding: 10px;
-        background: rgba($cookie-consent-text, 0);
-        line-height: 0;
+  &__tab-description {
+    padding: 20px $cookie-consent-horizontal-padding;
+    background: rgba($cookie-consent-text, 0.05);
 
-        &:hover {
-            background: rgba($cookie-consent-text, 0.05);
-        }
-
-        & > svg {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            margin-top: -6px;
-            margin-left: -9px;
-            width: 18px;
-            height: 11px;
-            fill: #000000;
-        }
-
-        &[aria-selected="true"] > svg {
-            transform: scaleY(-1);
-        }
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 25px;
+      width: 0;
+      height: 0;
+      border: 8px solid transparent;
+      border-top-color: $cookie-consent-bg;
+      border-bottom: 0;
     }
+  }
 
-    &__tab-panel {
-        position: relative;
-        overflow: hidden;
-        transition: all 0.35s;
+  &__links {
+    display: flex;
+    margin-top: 1em;
 
-        &[aria-hidden="true"] {
-            display: none;
-        }
-    }
+    a {
+      color: $cookie-consent-link-text;
+      text-decoration: underline;
+      display: inline-block;
 
-    &__tab-description {
-        padding: 20px $cookie-consent-horizontal-padding;
-        background: rgba($cookie-consent-text, 0.05);
-
-        &::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 25px;
-            width: 0;
-            height: 0;
-            border: 8px solid transparent;
-            border-top-color: $cookie-consent-bg;
-            border-bottom: 0;
-        }
-    }
-
-    &__links {
-        display: flex;
-        margin-top: 1em;
-
-        a {
-            color: $cookie-consent-link-text;
-            text-decoration: underline;
-            display: inline-block;
-
-            &:hover {
-                text-decoration: none;
-            }
-
-            + a {
-                margin-left: $cookie-consent-horizontal-padding;
-            }
-        }
-    }
-
-    &__button {
-        outline: none;
-        border: none;
-        transition: all linear .2s;
-        width: 100%;
-        min-height: 55px;
-        font-weight: bold;
-        line-height: 1.1;
+      &:hover {
         text-decoration: none;
-        text-align: center;
-        cursor: pointer;
-        appearance: none;
-        background: $cookie-consent-btn-bg;
-        background-size: 200%;
-        color: $cookie-consent-btn-text;
-        font-size: 1em;
+      }
 
-        position: relative;
-        z-index: 1;
-
-        &:focus, &:hover {
-            background-position: left 0;
-        }
+      + a {
+        margin-left: $cookie-consent-horizontal-padding;
+      }
     }
+  }
+
+  &__button {
+    outline: none;
+    border: none;
+    transition: all linear 0.2s;
+    width: 100%;
+    min-height: 55px;
+    font-weight: bold;
+    line-height: 1.1;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    appearance: none;
+    background: $cookie-consent-btn-bg;
+    background-size: 200%;
+    color: $cookie-consent-btn-text;
+    font-size: 1em;
+
+    position: relative;
+    z-index: 1;
+
+    &:focus,
+    &:hover {
+      background-position: left 0;
+    }
+  }
 }
