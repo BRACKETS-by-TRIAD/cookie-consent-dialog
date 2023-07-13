@@ -42,7 +42,7 @@ const Dialog = ({ config, preferences }) => {
         <div class="${PREFIX}__inner">
           <form>
             <div class="${PREFIX}__header" id="${PREFIX}-description">
-              <h1>${config.get('labels.title')}</h1>
+              <h2>${config.get('labels.title')}</h2>
               ${config.get('labels.description')}
               <div class="${PREFIX}__links">
                   ${policyLink}
